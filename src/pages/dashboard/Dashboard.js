@@ -1,3 +1,4 @@
+//This is the dashboard component 
 import { useState } from 'react';
 import ProjectList from '../../components/ProjectList';
 import { useCollection } from '../../hooks/useCollection';

@@ -15,6 +15,7 @@ export default function Sidebar() {
     <div className='sidebar'>
       <div className='sidebar-content'>
         <div className='user'>
+            {/* Avatar components here */}
             {/* avatar and username here*/}
             <Avatar src={user.photoURL} />
             <p>Hey {user.displayName}</p>
