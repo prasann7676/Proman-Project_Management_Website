@@ -1,0 +1,41 @@
+
+// Rules
+
+// For users collection
+// - any authenticated user(who is logged in/ signed in) can read and create the document
+// - only users who "own/created" a document(here 'users' document) can update it(user id's match)
+
+// projects collection 
+// - any authenticated user can read, create and update a document(here 'projects').
+// - only users who "own/created" a document can delete it.
+
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // These rules are for 'users' collection
+    // This is the path of the documents
+    // {user_id} means any document inside the users folder(user_id here represents the userId of a user)
+    match /users/{user_id} {
+      allow read, create: if request.auth != null 
+      //if a user is logged in he can read and create documents in the users/{user_id} folder
+
+      allow update: if request.auth.uid == user_id
+      // if the logged in user is the one havind this particular document, then give access to update it. 
+    }
+
+
+    // These rules are for projects collection
+    match /projects/{project_id} {
+      allow read, create, update: if request.auth != null 
+      //if a user is logged in he can read, create and update documents in the projectss/{projects_id} folder
+
+      allow delete: if request.auth.uid == resource.data.createdBy.id
+      // resorce give us the data for the current document on which we are checking
+      // therefore, resouce.data is the document (here project)
+      // We will give access to deleting a particular project if he/she have created it.
+    }
+
+  }
+}
+
