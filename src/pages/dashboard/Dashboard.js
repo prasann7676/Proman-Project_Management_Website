@@ -1,3 +1,4 @@
+//This is the dashboard component 
 import { useState } from 'react';
 import ProjectList from '../../components/ProjectList';
 import { useCollection } from '../../hooks/useCollection';
@@ -13,7 +14,7 @@ export default function Dashboard() {
   const { documents, error } = useCollection('projects')
   const [currentFilter, setCurrentFilter] = useState('all') // inistial filter will be all, i.e all projects will be seen.
   
-  const changeFilter = (newFilter) => {
+  function changeFilter(newFilter){
     setCurrentFilter(newFilter)
   }
 
