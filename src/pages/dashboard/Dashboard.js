@@ -13,8 +13,8 @@ export default function Dashboard() {
   const { documents, error } = useCollection('projects')
   const [currentFilter, setCurrentFilter] = useState('all') // inistial filter will be all, i.e all projects will be seen.
   
-  const changeFilter = (newFilter) => {
-    setCurrentFilter(newFilter)
+  let changeFilter = (newChangedFilter) => {
+    setCurrentFilter(newChangedFilter)
   }
 
   // projects is an array of filtered project, according to a particular filter
